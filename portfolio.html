@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Youssef Osama — Front-End Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg-1:#0b1020;--bg-2:#081025;--card:rgba(255,255,255,0.05);--muted:#9aa7bf;--accent1:#06b6d4;--accent2:#7c3aed;--accent3:#ff4d6d;--glass:rgba(255,255,255,0.05);--text:#e6eef8}
+    [data-theme="light"]{--bg-1:#f7fbff;--bg-2:#eef6ff;--card:rgba(11,17,34,0.04);--muted:#475569;--accent1:#0ea5a4;--accent2:#7c3aed;--accent3:#ff4d6d;--text:#071119}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;background:radial-gradient(800px 300px at 10% 10%,rgba(124,58,237,0.06),transparent),linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    header{position:sticky;top:18px;z-index:60;padding:12px 22px;backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:18px auto;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--accent2),var(--accent1));box-shadow:0 12px 40px rgba(8,9,25,0.6)}
+    nav{display:flex;align-items:center;gap:14px}
+    nav a{padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--muted);font-weight:600}
+    nav a:hover{color:var(--text);background:linear-gradient(90deg,rgba(255,255,255,0.03),transparent)}
+    .socials{display:flex;gap:8px;align-items:center}
+    .socials a{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);transition:transform .15s ease,background .15s ease}
+    .socials a svg{width:20px;height:20px;display:block}
+    .socials a:hover{transform:translateY(-4px);background:linear-gradient(90deg,var(--accent2),var(--accent1));border-color:transparent}
+    .wrap{max-width:1100px;margin:20px auto;padding:28px}
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;min-height:68vh}
+    .card{background:var(--card);border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(2,6,23,0.5);backdrop-filter:blur(8px)}
+    .hero-left h1{font-size:36px;margin-bottom:6px}
+    .type{background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+    .hero-left p{color:var(--muted);line-height:1.6}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 16px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+    .profile{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+    .avatar{width:220px;height:220px;border-radius:16px;overflow:hidden;object-fit:cover;border:4px solid rgba(255,255,255,0.06);box-shadow:0 18px 40px rgba(2,6,23,0.6)}
+    .meta{color:var(--muted);font-size:14px}
+    .skills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .skill{padding:8px 12px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);font-weight:700;color:var(--text);border:1px solid rgba(255,255,255,0.03)}
+    section{margin-top:26px}
+    .section-title{text-align:center;color:var(--accent1);font-weight:800;margin-bottom:12px}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .project{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+    .project:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.5)}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+    .service{padding:18px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);transition:transform .2s ease,box-shadow .2s ease}
+    .service:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(0,0,0,0.4)}
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .field{position:relative}
+    .field input,.field textarea{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+    .social-card{padding:16px;border-radius:12px;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent)}
+    footer{text-align:center;color:var(--muted);margin-top:30px;padding-bottom:40px}
+    @media (max-width:980px){.hero{grid-template-columns:1fr}.projects-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body data-theme="dark">
+  <header>
+    <div class="brand">
+      <div class="logo">YO</div>
+      <div>
+        <div style="font-weight:800">Youssef Osama</div>
+        <div style="font-size:13px;color:var(--muted)">Front‑End Developer • DEPI Student</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/youssef-osama-8b1960328" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="4" fill="transparent"></rect><path d="M6.94 8.94H4.5V19.5H6.94V8.94Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.72 6.5C6.54002 6.5 7.22 5.82 7.22 5C7.22 4.18 6.54002 3.5 5.72 3.5C4.9 3.5 4.22 4.18 4.22 5C4.22 5.82 4.9 6.5 5.72 6.5Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 19.5V13.5C10.5 12.12 12.06 11.78 12.76 12.76V19.5H15.2V13.02C15.2 11.06 13.08 10.84 12 11.56V11.56" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://github.com/YoussefOsama2005" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 .5C5.73.5.93 5.3.93 11.57c0 4.72 3.07 8.72 7.33 10.13.54.1.74-.24.74-.52 0-.26-.01-1.13-.02-2.05-2.98.65-3.61-1.44-3.61-1.44-.49-1.26-1.2-1.6-1.2-1.6-.98-.67.07-.66.07-.66 1.08.08 1.65 1.12 1.65 1.12.96 1.65 2.52 1.17 3.13.9.1-.7.38-1.17.69-1.44-2.38-.27-4.88-1.2-4.88-5.36 0-1.18.42-2.14 1.11-2.9-.11-.27-.48-1.36.11-2.83 0 0 .9-.29 2.95 1.1a10.32 10.32 0 0 1 2.69-.36c.91 0 1.83.12 2.69.36 2.05-1.39 2.95-1.1 2.95-1.1.59 1.47.22 2.56.11 2.83.69.76 1.11 1.72 1.11 2.9 0 4.17-2.5 5.09-4.88 5.35.39.33.73.98.73 1.98 0 1.43-.01 2.58-.01 2.93 0 .29.2.63.75.52 4.26-1.42 7.32-5.41 7.32-10.13C23.07 5.3 18.27.5 12 .5z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="hero-left card">
+        <h1>Hello, I’m <span class="type">Youssef</span></h1>
+        <h3 id="typed" style="margin-top:6px;font-weight:700"></h3>
+        <p style="margin-top:12px">I craft modern, responsive front-end experiences with React.js. I combine strong CS fundamentals from DEPI with practical tooling (Git, component-driven design) to build maintainable interfaces for clients.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View Work</a>
+          <button class="btn ghost" id="downloadResume">Download CV</button>
+        </div>
+      </div>
+
+      <aside class="profile card">
+        <img src="me.jpg" alt="Youssef Osama" class="avatar">
+        <div style="font-weight:800">Youssef Osama</div>
+        <div class="meta">Front‑End Developer • React.js</div>
+        <div class="skills" style="margin-top:10px">
+          <div class="skill">React.js</div>
+          <div class="skill">HTML & CSS</div>
+          <div class="skill">JavaScript</div>
+          <div class="skill">Tailwind</div>
+          <div class="skill">Git & GitHub</div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="about" class="card" style="margin-top:22px">
+      <div style="padding:18px">
+        <div class="section-title">About Me</div>
+        <p style="color:var(--muted);margin-top:10px">I am a Computer Science student currently studying at DEPI, preparing to grow as a professional freelancer. My passion lies in creating user-friendly, visually appealing, and efficient web applications. I enjoy turning ideas into responsive and interactive digital experiences, with a focus on modern technologies like React.js. My goal is to continuously improve my skills, collaborate with clients worldwide, and deliver clean, scalable, and creative solutions.</p>
+      </div>
+    </section>
+
+    <section id="skills" class="card">
+      <div style="padding:18px">
+        <div class="section-title">Skills</div>
+        <div class="skills" style="margin-top:12px">
+          <div class="skill">React.js</div>
+          <div class="skill">JavaScript (ES6+)</div>
+          <div class="skill">HTML5</div>
+          <div class="skill">CSS3</div>
+          <div class="skill">Tailwind CSS</div>
+          <div class="skill">Bootstrap</div>
+          <div class="skill">Git & GitHub</div>
+          <div class="skill">OOP</div>
+          <div class="skill">Data Structures</div>
+          <div class="skill">Networking Basics</div>
+          <div class="skill">AI Basics</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="card">
+      <div style="padding:18px">
+        <div class="section-title">Services</div>
+        <div class="services-grid" style="margin-top:12px">
+          <div class="service">
+            <h3>Responsive Web Development</h3>
+            <p style="color:var(--muted);margin-top:8px">Building modern, mobile‑friendly websites with clean code and optimized performance.</p>
+          </div>
+          <div class="service">
+            <h3>React.js Applications</h3>
+            <p style="color:var(--muted);margin-top:8px">Developing dynamic, interactive, and component‑driven web apps with React.</p>
+          </div>
+          <div class="service">
+            <h3>UI/UX Implementation</h3>
+            <p style="color:var(--muted);margin-top:8px">Turning designs into pixel‑perfect, user‑friendly interfaces with smooth interactions.</p>
+          </div>
+          <div class="service">
+            <h3>Version Control & Collaboration</h3>
+            <p style="color:var(--muted);margin-top:8px">Managing codebases with Git/GitHub and enabling efficient teamwork.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="card" style="margin-top:18px">
+      <div style="padding:18px">
+        <div class="section-title">Projects</div>
+        <div class="projects-grid" style="margin-top:12px">
+          <div class="project">
+            <h3>Coming Soon</h3>
+            <p style="color:var(--muted);margin-top:8px">Exciting projects are in progress and will be showcased here soon.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+     <!-- REPLACE your existing contact section with this block -->
+<section id="contact" class="card" style="margin-top:18px">
+  <div style="padding:18px">
+    <div class="section-title">Contact</div>
+
+    <div class="contact-grid" style="margin-top:12px">
+      <div>
+        <form id="contactForm" method="post" action="" novalidate>
+          <div class="field">
+            <input type="text" id="cf-name" name="name" placeholder=" " required>
+            <label for="cf-name">Your name</label>
+          </div>
+
+          <div class="field" style="margin-top:10px">
+            <input type="email" id="cf-email" name="email" placeholder=" " required>
+            <label for="cf-email">Your email</label>
+          </div>
+
+          <div class="field" style="margin-top:10px">
+            <textarea id="cf-message" name="message" rows="6" placeholder=" " required></textarea>
+            <label for="cf-message">Message</label>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <button class="btn primary" type="submit">Send Message</button>
+            <button class="btn ghost" type="button" id="cf-reset">Clear</button>
+          </div>
+
+          <div id="cf-status" aria-live="polite" style="margin-top:12px;color:var(--muted);display:none"></div>
+        </form>
+      </div>
+
+      <aside class="social-card">
+        <div style="font-weight:800">Contact Info</div>
+        <p style="color:var(--muted);margin-top:8px">
+          Email: <a href="mailto:youssefosama20052005@gmail.com">youssefosama20052005@gmail.com</a><br>
+          Phone: <a href="tel:01285688890">01285688890</a>
+        </p>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <a class="socials" href="https://www.linkedin.com/in/youssef-osama-8b1960328" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <!-- LinkedIn SVG -->
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.94 8.94H4.5V19.5H6.94V8.94Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5.72 6.5C6.54002 6.5 7.22 5.82 7.22 5C7.22 4.18 6.54002 3.5 5.72 3.5C4.9 3.5 4.22 4.18 4.22 5C4.22 5.82 4.9 6.5 5.72 6.5Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10.5 19.5V13.5C10.5 12.12 12.06 11.78 12.76 12.76V19.5H15.2V13.02C15.2 11.06 13.08 10.84 12 11.56V11.56" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <a class="socials" href="https://github.com/YoussefOsama2005" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <!-- GitHub SVG -->
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 .5C5.73.5.93 5.3.93 11.57c0 4.72 3.07 8.72 7.33 10.13.54.1.74-.24.74-.52 0-.26-.01-1.13-.02-2.05-2.98.65-3.61-1.44-3.61-1.44-.49-1.26-1.2-1.6-1.2-1.6-.98-.67.07-.66.07-.66 1.08.08 1.65 1.12 1.65 1.12.96 1.65 2.52 1.17 3.13.9.1-.7.38-1.17.69-1.44-2.38-.27-4.88-1.2-4.88-5.36 0-1.18.42-2.14 1.11-2.9-.11-.27-.48-1.36.11-2.83 0 0 .9-.29 2.95 1.1a10.32 10.32 0 0 1 2.69-.36c.91 0 1.83.12 2.69.36 2.05-1.39 2.95-1.1 2.95-1.1.59 1.47.22 2.56.11 2.83.69.76 1.11 1.72 1.11 2.9 0 4.17-2.5 5.09-4.88 5.35.39.33.73.98.73 1.98 0 1.43-.01 2.58-.01 2.93 0 .29.2.63.75.52 4.26-1.42 7.32-5.41 7.32-10.13C23.07 5.3 18.27.5 12 .5z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+
+        <div style="margin-top:12px">
+          <img src="me.jpg" alt="Youssef" style="width:100%;border-radius:10px;object-fit:cover">
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('cf-status');
+  const resetBtn = document.getElementById('cf-reset');
+
+  function showStatus(msg, isError = false) {
+    status.style.display = 'block';
+    status.style.color = isError ? 'var(--accent3)' : 'var(--muted)';
+    status.textContent = msg;
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !message) {
+      showStatus('Please fill all fields.', true);
+      return;
+    }
+
+    showStatus('Sending...');
+
+    try {
+      const action = form.getAttribute('action'); // set this to your Formspree URL if you want server submission
+      if (action) {
+        const formData = new FormData(form);
+        const res = await fetch(action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          showStatus('Message sent — thank you!');
+          form.reset();
+        } else {
+          showStatus('Sending failed. Please try again or email directly.', true);
+        }
+      } else {
+        // fallback: open the user's email client
+        const mailto = 'mailto:youssefosama20052005@gmail.com'
+          + '?subject=' + encodeURIComponent('Portfolio contact from ' + name)
+          + '&body=' + encodeURIComponent(message + '\\n\\nContact: ' + email);
+        window.location.href = mailto;
+        showStatus('Opening your email client...');
+      }
+    } catch (err) {
+      showStatus('Error sending message. Use the email link to contact directly.', true);
+    }
+  });
+
+  resetBtn.addEventListener('click', () => { form.reset(); status.style.display = 'none'; });
+})();
+</script>
+
+  </body>
+</html>
+
